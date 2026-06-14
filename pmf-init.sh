@@ -21,6 +21,9 @@ declare -A COMPONENT_VERSION=()
 # 工具安装状态跟踪（跨阶段依赖）
 declare -A TOOL_STATE=()
 
+# 备份记录
+declare -a BACKUP_RECORDS=()
+
 # ═══════════════════════════════════════════════════════════════
 #  CLI 参数解析
 # ═══════════════════════════════════════════════════════════════
@@ -131,6 +134,7 @@ backup_file() {
         if [[ ! -f "$backup" ]]; then
             cp "$path" "$backup"
             log INFO "备份: $path → $backup"
+            BACKUP_RECORDS+=("$path → $backup")
         else
             log WARN "备份已存在: $backup"
         fi
@@ -881,12 +885,14 @@ phase2_graphify() {
 
     # 项目级图谱
     if [[ -d "$SCRIPT_DIR/graphify-out" ]]; then
-        log INFO "graphify-out/ 已存在"
         if [[ "$YES_MODE" == true ]]; then
-            log INFO "重新生成项目图谱..."
+            log INFO "graphify-out/ 已存在，重新生成项目图谱..."
             (cd "$SCRIPT_DIR" && retry_command "graphify ." 3) || true
+            COMPONENT_STATUS["graphify-out/"]="OK"
+        else
+            log INFO "graphify-out/ 已存在 (可更新)"
+            COMPONENT_STATUS["graphify-out/"]="UPDATE"
         fi
-        COMPONENT_STATUS["graphify-out/"]="OK"
         COMPONENT_VERSION["graphify-out/"]=""
     else
         local answer
@@ -1606,7 +1612,13 @@ REPORT
     # 备份记录
     echo "" >> "$report_file"
     echo "## 备份记录" >> "$report_file"
-    echo "无自动记录" >> "$report_file"
+    if [[ ${#BACKUP_RECORDS[@]} -gt 0 ]]; then
+        for rec in "${BACKUP_RECORDS[@]}"; do
+            echo "- $rec" >> "$report_file"
+        done
+    else
+        echo "无" >> "$report_file"
+    fi
 
     # 下一步
     cat >> "$report_file" <<'NEXT'

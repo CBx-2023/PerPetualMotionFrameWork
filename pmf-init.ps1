@@ -19,6 +19,7 @@ if (-not $Script:ScriptDir) { $Script:ScriptDir = Split-Path -Parent $MyInvocati
 $Script:ComponentStatus = @{}
 $Script:ComponentVersion = @{}
 $Script:ToolState = @{}
+$Script:BackupRecords = @()
 
 # ═══════════════════════════════════════════════════════════════
 #  帮助信息
@@ -92,6 +93,7 @@ function Backup-File {
         if (-not (Test-Path $backup)) {
             Copy-Item $Path $backup
             Write-Log INFO "备份: $Path → $backup"
+            $Script:BackupRecords += "$Path → $backup"
         } else {
             Write-Log WARN "备份已存在: $backup"
         }
@@ -143,7 +145,10 @@ function Invoke-RetryCommand {
     $delays = @(5, 10)
     for ($attempt = 0; $attempt -lt $MaxRetries; $attempt++) {
         try {
-            Invoke-Expression $Command 2>&1 | Out-Null
+            $output = Invoke-Expression $Command 2>&1
+            if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+                throw "Command exited with code $LASTEXITCODE"
+            }
             return $true
         } catch {
             if ($attempt -lt ($MaxRetries - 1)) {
@@ -157,6 +162,7 @@ function Invoke-RetryCommand {
     Write-Log ERROR "命令在 ${MaxRetries} 次尝试后失败: $Command"
     return $false
 }
+
 
 function Compare-Version {
     param(
@@ -693,14 +699,16 @@ function Invoke-Phase2 {
     # Project graph
     $graphOutPath = Join-Path $Script:ScriptDir "graphify-out"
     if (Test-Path $graphOutPath) {
-        Write-Log INFO "graphify-out/ 已存在"
         if ($Yes) {
-            Write-Log INFO "重新生成项目图谱..."
+            Write-Log INFO "graphify-out/ 已存在，重新生成项目图谱..."
             Push-Location $Script:ScriptDir
             Invoke-RetryCommand "graphify ." | Out-Null
             Pop-Location
+            $Script:ComponentStatus["graphify-out/"] = "OK"
+        } else {
+            Write-Log INFO "graphify-out/ 已存在 (可更新)"
+            $Script:ComponentStatus["graphify-out/"] = "UPDATE"
         }
-        $Script:ComponentStatus["graphify-out/"] = "OK"
         $Script:ComponentVersion["graphify-out/"] = ""
     } else {
         $answer = Invoke-PromptUser "生成项目图谱 (graphify .)?"
@@ -1332,7 +1340,16 @@ function New-Report {
     $report += @"
 
 ## 备份记录
-无自动记录
+"@
+    if ($Script:BackupRecords.Count -gt 0) {
+        foreach ($rec in $Script:BackupRecords) {
+            $report += "`n- $rec"
+        }
+    } else {
+        $report += "`n无"
+    }
+
+    $report += @"
 
 ## 下一步
 1. 重启 Claude Code / AGY / Codex
