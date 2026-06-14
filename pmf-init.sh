@@ -347,6 +347,44 @@ install_tool() {
     fi
 }
 
+# 判断 npm 全局安装是否需要 sudo
+# 返回 "sudo" 或 ""，供 get_install_cmd 拼接命令
+npm_global_cmd_prefix() {
+    # Root 用户不需要 sudo
+    if [[ $EUID -eq 0 ]]; then
+        echo ""
+        return
+    fi
+
+    # 获取 npm 全局安装路径
+    local npm_prefix
+    npm_prefix="$(npm config get prefix 2>/dev/null || echo "/usr/local")"
+
+    # nvm 管理的 node：prefix 在 $HOME 下，不需要 sudo
+    if [[ "$npm_prefix" == "$HOME"* ]]; then
+        echo ""
+        return
+    fi
+
+    # 检查用户是否有写权限
+    if [[ -w "${npm_prefix}/lib/node_modules" ]] 2>/dev/null; then
+        echo ""
+        return
+    fi
+
+    # 需要 sudo —— 检查是否可用
+    if command -v sudo &>/dev/null; then
+        echo "sudo"
+        return
+    fi
+
+    # sudo 不可用
+    log WARN "npm 全局安装需要 root 权限但 sudo 不可用。"
+    log WARN "  建议方案 1: 使用 nvm 管理 Node.js — https://github.com/nvm-sh/nvm"
+    log WARN "  建议方案 2: 以 root 用户运行此脚本"
+    echo ""
+}
+
 get_install_cmd() {
     local name="$1"
     case "$name" in
@@ -392,9 +430,21 @@ get_install_cmd() {
                 macos) echo "brew install uv" ;;
             esac
             ;;
-        codex)  echo "npm install -g @openai/codex" ;;
-        claude) echo "npm install -g @anthropic-ai/claude-code" ;;
-        agy)    echo "npm install -g @google/agy" ;;
+        codex)
+            local _prefix
+            _prefix=$(npm_global_cmd_prefix)
+            echo "${_prefix:+$_prefix }npm install -g @openai/codex"
+            ;;
+        claude)
+            local _prefix
+            _prefix=$(npm_global_cmd_prefix)
+            echo "${_prefix:+$_prefix }npm install -g @anthropic-ai/claude-code"
+            ;;
+        agy)
+            local _prefix
+            _prefix=$(npm_global_cmd_prefix)
+            echo "${_prefix:+$_prefix }npm install -g @google/agy"
+            ;;
     esac
 }
 
