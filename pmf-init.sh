@@ -21,6 +21,9 @@ declare -A COMPONENT_VERSION=()
 # 工具安装状态跟踪（跨阶段依赖）
 declare -A TOOL_STATE=()
 
+# apt-get update 状态缓存（每次脚本执行只跑一次）
+APT_UPDATED=false
+
 # 备份记录
 declare -a BACKUP_RECORDS=()
 
@@ -306,11 +309,31 @@ detect_skill() {
     echo "${results[*]}"
 }
 
+# 确保 apt 包索引已更新（每次脚本执行只跑一次）
+ensure_apt_updated() {
+    if [[ "$APT_UPDATED" == true ]]; then
+        return 0
+    fi
+    if [[ "$PKG_MGR" == "apt" ]]; then
+        log INFO "更新 apt 包索引..."
+        if sudo -E apt-get update -y; then
+            APT_UPDATED=true
+        else
+            log WARN "apt-get update 失败，继续尝试安装..."
+        fi
+    fi
+}
+
 install_tool() {
     local name="$1"
     local method="$2"
 
     log INFO "安装 $name..."
+
+    # 若安装命令使用 apt-get install，先确保包索引已更新
+    if [[ "$method" == *"apt-get install"* ]]; then
+        ensure_apt_updated
+    fi
 
     if retry_command "$method" 3; then
         refresh_path
@@ -331,7 +354,7 @@ get_install_cmd() {
             case "$OS_TYPE" in
                 linux)
                     case "$PKG_MGR" in
-                        apt) echo "sudo apt-get install -y git" ;;
+                        apt) echo "sudo -E apt-get install -y git" ;;
                         dnf) echo "sudo dnf install -y git" ;;
                         pacman) echo "sudo pacman -S --noconfirm git" ;;
                     esac
@@ -343,7 +366,7 @@ get_install_cmd() {
             case "$OS_TYPE" in
                 linux)
                     case "$PKG_MGR" in
-                        apt) echo "sudo apt-get install -y python3 python3-pip" ;;
+                        apt) echo "sudo -E apt-get install -y python3 python3-pip" ;;
                         dnf) echo "sudo dnf install -y python3 python3-pip" ;;
                         pacman) echo "sudo pacman -S --noconfirm python python-pip" ;;
                     esac
@@ -355,7 +378,7 @@ get_install_cmd() {
             case "$OS_TYPE" in
                 linux)
                     case "$PKG_MGR" in
-                        apt) echo "sudo apt-get install -y nodejs npm" ;;
+                        apt) echo "sudo -E apt-get install -y nodejs npm" ;;
                         dnf) echo "sudo dnf install -y nodejs npm" ;;
                         pacman) echo "sudo pacman -S --noconfirm nodejs npm" ;;
                     esac
