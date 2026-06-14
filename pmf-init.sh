@@ -24,6 +24,18 @@ declare -A TOOL_STATE=()
 # apt-get update 状态缓存（每次脚本执行只跑一次）
 APT_UPDATED=false
 
+# 统一跳过日志格式 (FIX-05)
+# 用法: log_skip "component" "reason"
+log_skip() {
+    local component="$1"
+    local reason="${2:-}"
+    if [[ -n "$reason" ]]; then
+        log INFO "⏭️ ${component}: 用户跳过 (${reason})"
+    else
+        log INFO "⏭️ ${component}: 用户跳过"
+    fi
+}
+
 # 备份记录
 declare -a BACKUP_RECORDS=()
 
@@ -500,10 +512,12 @@ phase1_base_environment() {
                     COMPONENT_VERSION["git"]=""
                 fi
             elif [[ "$answer" == "skip_phase" ]]; then
+                log_skip "git"
                 COMPONENT_STATUS["git"]="SKIPPED"
                 COMPONENT_VERSION["git"]=""
                 return
             else
+                log_skip "git"
                 COMPONENT_STATUS["git"]="SKIPPED"
                 COMPONENT_VERSION["git"]=""
             fi
@@ -563,12 +577,14 @@ phase1_base_environment() {
                     COMPONENT_VERSION["python3"]=""
                 fi
             elif [[ "$answer" == "skip_phase" ]]; then
+                log_skip "python3"
                 COMPONENT_STATUS["python3"]="SKIPPED"
                 COMPONENT_VERSION["python3"]=""
                 COMPONENT_STATUS["pip"]="SKIPPED"
                 COMPONENT_VERSION["pip"]=""
                 return
             else
+                log_skip "python3"
                 COMPONENT_STATUS["python3"]="SKIPPED"
                 COMPONENT_VERSION["python3"]=""
             fi
@@ -650,6 +666,7 @@ phase1_base_environment() {
                     npm_available=false
                 fi
             elif [[ "$answer" == "skip_phase" ]]; then
+                log_skip "node"
                 COMPONENT_STATUS["node"]="SKIPPED"
                 COMPONENT_VERSION["node"]=""
                 COMPONENT_STATUS["npm"]="SKIPPED"
@@ -662,6 +679,7 @@ phase1_base_environment() {
                 done
                 return
             else
+                log_skip "node"
                 COMPONENT_STATUS["node"]="SKIPPED"
                 COMPONENT_VERSION["node"]=""
                 npm_available=false
@@ -729,12 +747,14 @@ phase1_base_environment() {
                     TOOL_STATE["uv"]="MISSING"
                 fi
             elif [[ "$answer" == "skip_phase" ]]; then
+                log_skip "uv"
                 COMPONENT_STATUS["uv"]="SKIPPED"
                 COMPONENT_VERSION["uv"]=""
                 TOOL_STATE["uv"]="MISSING"
                 # codex/claude/agy still proceed if npm available
                 return
             else
+                log_skip "uv"
                 COMPONENT_STATUS["uv"]="SKIPPED"
                 COMPONENT_VERSION["uv"]=""
                 TOOL_STATE["uv"]="MISSING"
@@ -806,6 +826,7 @@ phase1_base_environment() {
                         TOOL_STATE["$t"]="MISSING"
                     fi
                 elif [[ "$answer" == "skip_phase" ]]; then
+                    log_skip "$t"
                     COMPONENT_STATUS["$t"]="SKIPPED"
                     COMPONENT_VERSION["$t"]=""
                     TOOL_STATE["$t"]="MISSING"
@@ -817,6 +838,7 @@ phase1_base_environment() {
                     done
                     return
                 else
+                    log_skip "$t"
                     COMPONENT_STATUS["$t"]="SKIPPED"
                     COMPONENT_VERSION["$t"]=""
                     TOOL_STATE["$t"]="MISSING"
@@ -886,6 +908,7 @@ phase2_graphify() {
                     COMPONENT_VERSION["graphify"]=""
                 fi
             elif [[ "$answer" == "skip_phase" ]]; then
+                log_skip "graphify"
                 COMPONENT_STATUS["graphify"]="SKIPPED"
                 COMPONENT_VERSION["graphify"]=""
                 for sub in "graphify→codex" "graphify→agy" "graphify→claude" "graphify-out/"; do
@@ -894,6 +917,7 @@ phase2_graphify() {
                 done
                 return
             else
+                log_skip "graphify"
                 COMPONENT_STATUS["graphify"]="SKIPPED"
                 COMPONENT_VERSION["graphify"]=""
                 for sub in "graphify→codex" "graphify→agy" "graphify→claude" "graphify-out/"; do
@@ -1019,6 +1043,7 @@ phase2_graphify() {
                 COMPONENT_VERSION["graphify-out/"]=""
             fi
         else
+            log_skip "graphify-out/"
             COMPONENT_STATUS["graphify-out/"]="SKIPPED"
             COMPONENT_VERSION["graphify-out/"]=""
         fi
@@ -1395,6 +1420,7 @@ TOML
         COMPONENT_VERSION["multi_agent"]=""
     else
         log WARN "用户跳过权限配置"
+        log_skip "approval_policy"
         COMPONENT_STATUS["approval_policy"]="SKIPPED"
         COMPONENT_VERSION["approval_policy"]=""
         COMPONENT_STATUS["sandbox_mode"]="SKIPPED"
