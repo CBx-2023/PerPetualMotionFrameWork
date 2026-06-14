@@ -343,6 +343,11 @@ install_tool() {
     else
         log ERROR "$name 安装失败"
         TOOL_STATE["$name"]="FAILED"
+        # agy 安装失败时提供手动安装指引
+        if [[ "$name" == "agy" ]]; then
+            log WARN "手动安装 agy: curl -fsSL https://antigravity.google/cli/install.sh | bash"
+            log WARN "详情: https://antigravity.google"
+        fi
         return 1
     fi
 }
@@ -441,9 +446,11 @@ get_install_cmd() {
             echo "${_prefix:+$_prefix }npm install -g @anthropic-ai/claude-code"
             ;;
         agy)
-            local _prefix
-            _prefix=$(npm_global_cmd_prefix)
-            echo "${_prefix:+$_prefix }npm install -g @google/agy"
+            # agy (Antigravity CLI) 是原生 Go 二进制，不是 npm 包
+            case "$OS_TYPE" in
+                linux|macos) echo "curl -fsSL https://antigravity.google/cli/install.sh | bash" ;;
+                *) log WARN "agy 安装仅支持 Linux/macOS。请访问 https://antigravity.google 手动安装。" ;;
+            esac
             ;;
     esac
 }
@@ -748,7 +755,7 @@ phase1_base_environment() {
 
     local tier4_tools=("codex" "claude" "agy")
     local tier4_cmds=("codex --version" "claude --version" "agy --version")
-    local tier4_check_cmds=("npm outdated -g @openai/codex" "npm outdated -g @anthropic-ai/claude-code" "npm outdated -g @google/agy")
+    local tier4_check_cmds=("npm outdated -g @openai/codex" "npm outdated -g @anthropic-ai/claude-code" "agy --version")
 
     for i in "${!tier4_tools[@]}"; do
         local t="${tier4_tools[$i]}"
