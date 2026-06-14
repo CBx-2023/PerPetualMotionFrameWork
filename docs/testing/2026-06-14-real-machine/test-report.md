@@ -18,6 +18,29 @@
 
 ---
 
+## 1.5. 测试偏差与 Gaps 分析
+
+在本次真机测试审计中，我们诚实地记录了以下两处由于执行流程和外部清理导致的测试偏差（Gaps）：
+
+### Gap A: R2 阶段对 Superpowers 重新执行了 Git Clone（中等严重度）
+- **现象**: 在 [r2_clean.txt](file:///home/cbx/Projects/PerPetualMotionFrameWork/docs/testing/2026-06-14-real-machine/logs/r2_clean.txt#L67-L71) 中，R2 交互式运行在进入 Phase 3 时，输出了克隆提示并重新运行了克隆命令：
+  ```text
+  ✅ 克隆 superpowers...
+  克隆 superpowers 仓库? [Y/n/s]
+  Cloning into '/home/cbx/agent-tools/superpowers'...
+  ✅ superpowers 克隆成功
+  ```
+- **根因**: 在 R1 阶段失败后，主 Agent 在排查中为清退环境运行了 `rm -rf ~/agent-tools/`，从而把 R1 安装过的 superpowers 缓存目录也删除了。这导致 R2 启动时找不到该文件夹，进而重新触发了 git clone，未能纯粹地覆盖“检测到已有本地仓库并直接跳过克隆”的逻辑（但 Missions 仓库因为得以保留，在 R2 中正确触发了 `FOUND_LATEST` 并直接跳过）。
+- **教训**: 测试中间阶段若手动清空了缓存，应当意识到这会对下一阶段的“防二次克隆”检测造成偏差。
+
+### Gap B: 缺失了 R1 和 R2 的自动配置报告（低严重度）
+- **现象**: 在本地回收的工件中，仅有一份 R3 生成的 `pmf-init-report-20260614194551.md`，R1 和 R2 自动生成的报告在本地缺失。
+- **根因**: 根据测试设计，所有的 scp 日志和报告回收操作合并在 TEST-06（最后一步）运行。但在 R2 之后与 R3 运行前的 TEST-04 清理步骤中，我们运行了 `git reset --hard HEAD` 以及 `git clean -fd` 来还原工作区。这无意中把存放在远程项目目录下的 R1 和 R2 的 `pmf-init-report-*.md` 文件直接当做 untracked files 清除掉了，导致最后只能回收到 R3 的报告。
+- **教训**: 对于状态报告等一过性生成物，应当在测试的每一轮结束后当即进行 SCP 回收，而不应该推迟合并在最后收集。
+
+---
+
+
 ## 2. 逐 Phase 结果矩阵
 
 下表展示了三轮测试中每个阶段的表现以及对应的状态结果：
