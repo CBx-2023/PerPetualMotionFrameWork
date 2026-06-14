@@ -72,7 +72,7 @@
   claude) echo "npm install -g @anthropic-ai/claude-code" ;;
   agy)    echo "npm install -g @google/agy" ;;
   ```
-  `r3_clean.txt` 中 L300+ 频繁重试并失败 3 次的日志片段。
+  `r3_clean.txt` 中 L37-102 频繁重试并失败 3 次的日志片段。
 - **建议修复**:
   将命令改为：
   ```bash
