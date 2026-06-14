@@ -1,0 +1,16 @@
+## REVIEW-01
+- Source doc: docs/superpowers/specs/2026-06-14-real-machine-test-design.md
+- Review agent: same-model sub-agent
+- Scope checked: (1) Log Completeness, (2) BUG Evidence Honesty, (3) R2 Genuine Existing-Environment Test, (4) R3 Printf Sequence Accuracy
+- Evidence checked: docs/testing/2026-06-14-real-machine/ logs, test-report.md, issues CSV, git log
+- Claim/evidence alignment: mismatches found
+- Limited validation honestly reported: not_applicable
+- Result: gaps_found
+- Gaps:
+  - **Gap 1 (Medium)**: R2 test executed a git clone for superpowers because the directory `~/agent-tools/superpowers` had been manually cleaned up beforehand, meaning skip-cloning for superpowers was not genuinely tested.
+  - **Gap 2 (Low)**: BUG-02 log line citation in test-report.md is inaccurate, citing L300+ of `r3_clean.txt` instead of L37-102.
+  - **Gap 3 (Low)**: R1 and R2 Configuration Reports (`pmf-init-report-*.md`) were missing because they were deleted in TEST-04 cleanup before SCP recovery in TEST-06.
+- Follow-up issues added: FOLLOWUP-01, FOLLOWUP-02, FOLLOWUP-03, REVIEW-02
+- Assumptions: none
+- Decision debt: none
+- Human-required blockers: none
