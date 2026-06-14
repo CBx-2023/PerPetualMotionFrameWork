@@ -469,6 +469,7 @@
         <li><a href="#phases">七阶段</a></li>
         <li><a href="#cli">命令行</a></li>
         <li><a href="#safety">安全</a></li>
+        <li><a href="#changelog">更新日志</a></li>
         <li><a href="https://github.com/CBx-2023/PerPetualMotionFrameWork">GitHub</a></li>
     </ul>
 </nav>
@@ -567,10 +568,11 @@ cd PerPetualMotionFrameWork
                     <tr><td><span class="badge badge-blue">Tier 2</span></td><td>python3 + pip</td><td>≥ 3.10</td><td>apt / brew / winget</td></tr>
                     <tr><td><span class="badge badge-blue">Tier 2</span></td><td>node + npm</td><td>≥ 20</td><td>apt / brew / winget</td></tr>
                     <tr><td><span class="badge badge-amber">Tier 3</span></td><td>uv</td><td>—</td><td>curl|sh / winget</td></tr>
-                    <tr><td><span class="badge badge-amber">Tier 4</span></td><td>codex / claude / agy</td><td>—</td><td>npm install -g</td></tr>
+                    <tr><td><span class="badge badge-amber">Tier 4</span></td><td>codex / claude</td><td>—</td><td>npm install -g（非 root 自动 sudo）</td></tr>
+                    <tr><td><span class="badge badge-amber">Tier 4</span></td><td>agy</td><td>—</td><td>curl 官方安装脚本</td></tr>
                 </tbody>
             </table>
-            <p>如果上游依赖缺失且用户跳过，下游工具标记为 <code>BLOCKED</code>。</p>
+            <p>如果上游依赖缺失且用户跳过，下游工具标记为 <code>BLOCKED</code>。apt 系统只更新一次索引，且通过 <code>sudo -E</code> 保留代理环境变量。</p>
         </div>
 
         <div class="phase">
@@ -579,7 +581,7 @@ cd PerPetualMotionFrameWork
             <ul>
                 <li>通过 <code>uv tool install "graphifyy[office,chinese]"</code> 安装 CLI</li>
                 <li>为 codex、antigravity、claude 三平台注册 skill</li>
-                <li>可选运行 <code>graphify .</code> 生成项目知识图谱</li>
+                <li>可选运行 <code>graphify .</code> 生成项目知识图谱（需要 LLM API Key，无 key 时自动跳过）</li>
             </ul>
         </div>
 
@@ -699,6 +701,24 @@ cd PerPetualMotionFrameWork
             <h3>⚙️ 容错不中断</h3>
             <p>任何单项失败不终止脚本，记录状态后继续执行。</p>
         </div>
+    </div>
+</section>
+
+<!-- Changelog -->
+<section id="changelog">
+    <h2 class="section-title">更新日志</h2>
+    <p class="section-subtitle">版本变更记录</p>
+
+    <div class="phase">
+        <span class="phase-num" style="background: var(--gradient-2);">2026-06-14</span>
+        <h3>pmf-init.sh 稳定性修复（v1.1）</h3>
+        <ul>
+            <li>🐛 <strong>apt 索引更新</strong>：首次 apt 安装前自动执行 <code>apt-get update</code>，后续安装复用缓存，<code>sudo -E</code> 保留代理变量</li>
+            <li>🐛 <strong>npm 权限</strong>：非 root 用户自动检测是否需要 sudo；nvm 用户无需 sudo；无 sudo 时提供 nvm 建议</li>
+            <li>🐛 <strong>agy 安装</strong>：从不存在的 npm 包改为官方 curl 安装脚本（<code>antigravity.google/cli/install.sh</code>）</li>
+            <li>🐛 <strong>API Key 预检</strong>：<code>graphify .</code> 运行前检测 LLM API Key，无 key 时跳过避免 3 次无效重试</li>
+            <li>✨ <strong>跳过日志</strong>：统一所有用户跳过输出为 <code>⏭️ [组件]: 用户跳过</code> 格式，Phase 7 报告准确收集</li>
+        </ul>
     </div>
 </section>
 
