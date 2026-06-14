@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerPetual Motion FrameWork — 使用文档</title>
+    <meta name="description" content="PMF 一键配置 AI Agent 四层协作架构的完整使用文档">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2035;
+            --bg-code: #0d1117;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --accent-cyan: #06b6d4;
+            --border: #1e293b;
+            --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #10b981, #06b6d4);
+            --gradient-3: linear-gradient(135deg, #f59e0b, #f43f5e);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(59,130,246,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(139,92,246,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 60%);
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -1%) rotate(1deg); }
+            66% { transform: translate(-1%, 2%) rotate(-1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.25);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59,130,246,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-blue);
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10,14,26,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover { color: var(--text-primary); }
+
+        /* ── Sections ── */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* ── Architecture Cards ── */
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .arch-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .arch-card:nth-child(1)::before { background: var(--gradient-3); }
+        .arch-card:nth-child(2)::before { background: var(--gradient-2); }
+        .arch-card:nth-child(3)::before { background: var(--gradient-1); }
+        .arch-card:nth-child(4)::before { background: linear-gradient(135deg, #8b5cf6, #f43f5e); }
+
+        .arch-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59,130,246,0.3);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .arch-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .arch-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .arch-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ── Phase Timeline ── */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.9rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple), var(--accent-emerald));
+        }
+
+        .phase {
+            position: relative;
+            margin-bottom: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+        }
+
+        .phase::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 2rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 12px rgba(59,130,246,0.4);
+        }
+
+        .phase-num {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            background: rgba(59,130,246,0.12);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .phase h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .phase p, .phase ul {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .phase ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .phase ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .phase ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-emerald);
+        }
+
+        /* ── Code Block ── */
+        .code-block {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block .label {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: rgba(16,185,129,0.12);
+            color: var(--accent-emerald);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .code-block code, .code-block pre {
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .code-block pre { white-space: pre; }
+
+        /* ── Table ── */
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .doc-table th, .doc-table td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-table th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .doc-table td {
+            font-size: 0.95rem;
+        }
+
+        .doc-table tr:hover td {
+            background: rgba(59,130,246,0.03);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge-blue { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+        .badge-green { background: rgba(16,185,129,0.15); color: var(--accent-emerald); }
+        .badge-amber { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+
+        /* ── Warning Box ── */
+        .warning-box {
+            background: rgba(245,158,11,0.06);
+            border: 1px solid rgba(245,158,11,0.2);
+            border-left: 4px solid var(--accent-amber);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box .title {
+            color: var(--accent-amber);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--accent-blue); text-decoration: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            nav .nav-links { display: none; }
+            .arch-grid { grid-template-columns: 1fr; }
+            .timeline { padding-left: 2rem; }
+            .phase::before { left: -1.35rem; }
+        }
+
+        /* ── Smooth scroll ── */
+        html { scroll-behavior: smooth; }
+
+        /* ── Status symbols ── */
+        .status-ok { color: var(--accent-emerald); }
+        .status-update { color: var(--accent-amber); }
+        .status-fail { color: var(--accent-rose); }
+        .status-blocked { color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <span class="logo">🔄 PMF Docs</span>
+    <ul class="nav-links">
+        <li><a href="#architecture">架构</a></li>
+        <li><a href="#quickstart">快速开始</a></li>
+        <li><a href="#phases">七阶段</a></li>
+        <li><a href="#cli">命令行</a></li>
+        <li><a href="#safety">安全</a></li>
+        <li><a href="https://github.com/CBx-2023/PerPetualMotionFrameWork">GitHub</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">🔄 Open Source</span>
+        <h1>PerPetual Motion FrameWork</h1>
+        <p>一键配置 AI Agent 四层协作架构<br>让 Codex、Claude Code、AGY 协同工作</p>
+        <div class="hero-buttons">
+            <a href="#quickstart" class="btn btn-primary">🚀 快速开始</a>
+            <a href="https://github.com/CBx-2023/PerPetualMotionFrameWork" class="btn btn-outline">⭐ GitHub</a>
+        </div>
+    </div>
+</div>
+
+<!-- Architecture -->
+<section id="architecture">
+    <h2 class="section-title">四层架构</h2>
+    <p class="section-subtitle">每一层解决 AI Agent 协作的一个核心问题</p>
+
+    <div class="arch-grid">
+        <div class="arch-card">
+            <div class="icon">🔐</div>
+            <h3>权限层</h3>
+            <p>控制 Codex 的审批策略和沙箱模式，确保自动化执行安全可控。通过 config.toml 精确配置 approval_policy、sandbox_mode 和 multi_agent 开关。</p>
+        </div>
+        <div class="arch-card">
+            <div class="icon">🧠</div>
+            <h3>记忆层</h3>
+            <p>基于 Graphify 构建代码库知识图谱，让每个 Agent 都能理解项目全貌。支持增量更新和多平台注册。</p>
+        </div>
+        <div class="arch-card">
+            <div class="icon">⚡</div>
+            <h3>方法层</h3>
+            <p>Superpowers Skills 提供经过验证的方法论 — 从头脑风暴到代码审查、从 TDD 到系统调试，统一三平台工作方式。</p>
+        </div>
+        <div class="arch-card">
+            <div class="icon">🎯</div>
+            <h3>执行层</h3>
+            <p>Missions Skills 实现任务分解和闭环执行。复杂任务自动转为 CSV 追踪，支持中断恢复和进度持久化。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Start -->
+<section id="quickstart">
+    <h2 class="section-title">快速开始</h2>
+    <p class="section-subtitle">三步完成环境配置</p>
+
+    <div class="code-block">
+        <span class="label">Linux / macOS</span>
+        <pre><code>git clone https://github.com/CBx-2023/PerPetualMotionFrameWork.git
+cd PerPetualMotionFrameWork
+chmod +x pmf-init.sh
+./pmf-init.sh</code></pre>
+    </div>
+
+    <div class="code-block">
+        <span class="label">Windows PowerShell</span>
+        <pre><code>git clone https://github.com/CBx-2023/PerPetualMotionFrameWork.git
+cd PerPetualMotionFrameWork
+.\pmf-init.ps1</code></pre>
+    </div>
+
+    <div class="code-block">
+        <span class="label">全自动模式</span>
+        <pre><code># Linux/macOS — 自动安装（权限层仍需确认）
+./pmf-init.sh --yes
+
+# Linux/macOS — 完全自动（包括权限修改）
+./pmf-init.sh --yes --force-permissions
+
+# Windows
+.\pmf-init.ps1 -Yes -ForcePermissions</code></pre>
+    </div>
+</section>
+
+<!-- Phases -->
+<section id="phases">
+    <h2 class="section-title">七阶段流程</h2>
+    <p class="section-subtitle">pmf-init 按依赖顺序逐层配置</p>
+
+    <div class="timeline">
+        <div class="phase">
+            <span class="phase-num">Phase 1</span>
+            <h3>基础环境检测与安装</h3>
+            <p>按四级依赖顺序处理 9 个工具：</p>
+            <table class="doc-table">
+                <thead>
+                    <tr><th>Tier</th><th>工具</th><th>最低版本</th><th>安装方式</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="badge badge-green">Tier 1</span></td><td>git</td><td>—</td><td>apt / dnf / pacman / brew / winget</td></tr>
+                    <tr><td><span class="badge badge-blue">Tier 2</span></td><td>python3 + pip</td><td>≥ 3.10</td><td>apt / brew / winget</td></tr>
+                    <tr><td><span class="badge badge-blue">Tier 2</span></td><td>node + npm</td><td>≥ 20</td><td>apt / brew / winget</td></tr>
+                    <tr><td><span class="badge badge-amber">Tier 3</span></td><td>uv</td><td>—</td><td>curl|sh / winget</td></tr>
+                    <tr><td><span class="badge badge-amber">Tier 4</span></td><td>codex / claude / agy</td><td>—</td><td>npm install -g</td></tr>
+                </tbody>
+            </table>
+            <p>如果上游依赖缺失且用户跳过，下游工具标记为 <code>BLOCKED</code>。</p>
+        </div>
+
+        <div class="phase">
+            <span class="phase-num">Phase 2</span>
+            <h3>记忆层 — Graphify</h3>
+            <ul>
+                <li>通过 <code>uv tool install "graphifyy[office,chinese]"</code> 安装 CLI</li>
+                <li>为 codex、antigravity、claude 三平台注册 skill</li>
+                <li>可选运行 <code>graphify .</code> 生成项目知识图谱</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <span class="phase-num">Phase 3</span>
+            <h3>方法层 — Superpowers</h3>
+            <ul>
+                <li>克隆 obra/superpowers 到 ~/agent-tools/superpowers</li>
+                <li>AGY: <code>agy plugin install</code></li>
+                <li>Codex/Claude: 文件放置（已有目录不覆盖）</li>
+                <li>检测远端更新，--yes 模式自动拉取</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <span class="phase-num">Phase 4</span>
+            <h3>执行层 — Missions</h3>
+            <ul>
+                <li>克隆 flowing-water1/Missions 到 ~/agent-tools/Missions</li>
+                <li>仅复制 6 个 mission* 目录到三平台 skills 路径</li>
+                <li>不复制 README.md、LICENSE 等非技能文件</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <span class="phase-num">Phase 5</span>
+            <h3>权限层 — Codex config.toml</h3>
+            <table class="doc-table">
+                <thead><tr><th>设置</th><th>目标值</th><th>说明</th></tr></thead>
+                <tbody>
+                    <tr><td><code>approval_policy</code></td><td><code>"never"</code></td><td>免确认执行命令</td></tr>
+                    <tr><td><code>sandbox_mode</code></td><td><code>"danger-full-access"</code></td><td>完全文件系统访问</td></tr>
+                    <tr><td><code>multi_agent</code></td><td><code>true</code></td><td>启用多 Agent 协作</td></tr>
+                </tbody>
+            </table>
+            <div class="warning-box">
+                <div class="title">⚠️ 安全提示</div>
+                <p>即使在 <code>--yes</code> 模式下，权限修改仍默认拒绝 (N)。只有 <code>--yes --force-permissions</code> 才会自动应用。修改前会自动创建 <code>config.toml.bak.YYYYMMDDHHmmss</code> 备份。</p>
+            </div>
+        </div>
+
+        <div class="phase">
+            <span class="phase-num">Phase 6</span>
+            <h3>项目结构</h3>
+            <ul>
+                <li>创建 <code>docs/superpowers/specs/</code>、<code>issues/</code>、<code>.mission/</code></li>
+                <li>生成 <code>AGENTS.md</code>（工具分工、路由、硬门禁）</li>
+                <li>已有 AGENTS.md 提供覆盖/追加/跳过三选一</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <span class="phase-num">Phase 7</span>
+            <h3>验收报告</h3>
+            <ul>
+                <li>渲染终端状态表：<span class="status-ok">✅ OK</span> / <span class="status-update">⚠️ UPDATE</span> / <span class="status-fail">❌ FAIL</span> / 🚫 BLOCKED / ⏭️ SKIPPED</li>
+                <li>生成 <code>pmf-init-report-YYYYMMDDHHmmss.md</code> 报告</li>
+                <li>列出可更新项及具体命令</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- CLI -->
+<section id="cli">
+    <h2 class="section-title">命令行参数</h2>
+    <p class="section-subtitle">交互模式（默认）与自动模式</p>
+
+    <h3 style="margin-bottom: 1rem; color: var(--accent-emerald);">Bash — pmf-init.sh</h3>
+    <table class="doc-table">
+        <thead><tr><th>参数</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td><code>--yes</code></td><td>全自动模式，跳过所有确认（权限层除外）</td></tr>
+            <tr><td><code>--force-permissions</code></td><td>与 --yes 配合，权限层也自动修改</td></tr>
+            <tr><td><code>--help</code></td><td>显示帮助信息</td></tr>
+        </tbody>
+    </table>
+
+    <h3 style="margin: 2rem 0 1rem; color: var(--accent-blue);">PowerShell — pmf-init.ps1</h3>
+    <table class="doc-table">
+        <thead><tr><th>参数</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td><code>-Yes</code></td><td>全自动模式</td></tr>
+            <tr><td><code>-ForcePermissions</code></td><td>权限层自动修改</td></tr>
+            <tr><td><code>-Help</code></td><td>显示帮助信息</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Safety -->
+<section id="safety">
+    <h2 class="section-title">安全设计</h2>
+    <p class="section-subtitle">六大安全原则贯穿始终</p>
+
+    <div class="arch-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="arch-card">
+            <h3>🔍 先检测再行动</h3>
+            <p>每个组件先 detect 状态（FOUND_LATEST / FOUND_UPDATABLE / NOT_FOUND），再决定下一步。</p>
+        </div>
+        <div class="arch-card">
+            <h3>🎛️ 用户完全可控</h3>
+            <p>每步交互 Y/n/s，可跳过单项或整个阶段。</p>
+        </div>
+        <div class="arch-card">
+            <h3>🛡️ 权限双重确认</h3>
+            <p>--yes 模式下权限修改仍默认拒绝，需 --force-permissions。</p>
+        </div>
+        <div class="arch-card">
+            <h3>📁 不覆盖用户数据</h3>
+            <p>已有 skill 目录跳过，AGENTS.md 提供三选一。</p>
+        </div>
+        <div class="arch-card">
+            <h3>🔄 失败自动重试</h3>
+            <p>网络操作重试 3 次，间隔 5s → 10s，第 3 次失败记录 FAIL。</p>
+        </div>
+        <div class="arch-card">
+            <h3>⚙️ 容错不中断</h3>
+            <p>任何单项失败不终止脚本，记录状态后继续执行。</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>PerPetual Motion FrameWork &copy; 2026 — <a href="https://github.com/CBx-2023/PerPetualMotionFrameWork">GitHub</a></p>
+</footer>
+
+</body>
+</html>
