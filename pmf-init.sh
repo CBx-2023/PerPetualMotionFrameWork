@@ -964,7 +964,39 @@ phase2_graphify() {
     fi
 
     # 项目级图谱
-    if [[ -d "$SCRIPT_DIR/graphify-out" ]]; then
+    # FIX-04: 先检测 LLM API Key，无 key 时跳过 graphify . 避免无意义重试
+    local has_api_key=false
+    if [[ -n "${GEMINI_API_KEY:-}" ]] || [[ -n "${OPENAI_API_KEY:-}" ]] || \
+       [[ -n "${ANTHROPIC_API_KEY:-}" ]] || [[ -n "${GOOGLE_API_KEY:-}" ]]; then
+        has_api_key=true
+    fi
+
+    if [[ "$has_api_key" == false ]]; then
+        log WARN "未检测到 LLM API Key 环境变量"
+        log WARN "  graphify . 需要以下任一 key: GEMINI_API_KEY, OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY"
+        if [[ "$YES_MODE" == true ]]; then
+            log WARN "⏭️ graphify-out/: 用户跳过 (--yes 模式, 无 API Key)"
+            COMPONENT_STATUS["graphify-out/"]="SKIPPED"
+            COMPONENT_VERSION["graphify-out/"]=""
+        else
+            local answer
+            answer=$(prompt_user "无 API Key，仍然运行 graphify . ? (可能失败)")
+            if [[ "$answer" == "yes" ]]; then
+                log INFO "生成项目图谱 (无 API Key, 可能失败)..."
+                if (cd "$SCRIPT_DIR" && retry_command "graphify ." 3); then
+                    COMPONENT_STATUS["graphify-out/"]="OK"
+                    COMPONENT_VERSION["graphify-out/"]=""
+                else
+                    COMPONENT_STATUS["graphify-out/"]="FAIL"
+                    COMPONENT_VERSION["graphify-out/"]=""
+                fi
+            else
+                log WARN "⏭️ graphify-out/: 用户跳过 (无 API Key)"
+                COMPONENT_STATUS["graphify-out/"]="SKIPPED"
+                COMPONENT_VERSION["graphify-out/"]=""
+            fi
+        fi
+    elif [[ -d "$SCRIPT_DIR/graphify-out" ]]; then
         if [[ "$YES_MODE" == true ]]; then
             log INFO "graphify-out/ 已存在，重新生成项目图谱..."
             (cd "$SCRIPT_DIR" && retry_command "graphify ." 3) || true
