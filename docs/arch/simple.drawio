@@ -1,0 +1,87 @@
+<mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0" adaptiveColors="auto">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fbfaf6;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1600" height="1000" as="geometry"/>
+    </mxCell>
+    <mxCell id="title" value="PerPetual Motion FrameWork" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=36;fontStyle=1;fontColor=#111827;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="430" y="40" width="740" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="subtitle" value="长程任务永动飞轮：Evidence → State → Gap → Next Issue" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#5b6470;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="360" y="90" width="880" height="34" as="geometry"/>
+    </mxCell>
+    <mxCell id="halo_outer" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#d5dce3;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="410" y="155" width="780" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="halo_inner" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f7f9fb;strokeColor=#e1e6eb;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="550" y="295" width="500" height="500" as="geometry"/>
+    </mxCell>
+    <mxCell id="center" value="↻&lt;br&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Perpetual Loop&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;证据驱动 · 状态续跑 · 缺口回流&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#111827;strokeColor=#111827;strokeWidth=2;fontSize=58;fontStyle=1;fontColor=#ffffff;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+      <mxGeometry x="655" y="400" width="290" height="290" as="geometry"/>
+    </mxCell>
+    <mxCell id="node_spec" value="◆&lt;br&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Spec&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ede7f6;strokeColor=#70569a;strokeWidth=2.2;fontSize=30;fontStyle=1;fontColor=#4a3765;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="710" y="150" width="180" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="node_csv" value="▦&lt;br&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;CSV&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff0d9;strokeColor=#a36a2c;strokeWidth=2.2;fontSize=30;fontStyle=1;fontColor=#684014;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="990" y="310" width="180" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="node_execute" value="▶&lt;br&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Execute&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#e8f2ff;strokeColor=#386b9f;strokeWidth=2.2;fontSize=30;fontStyle=1;fontColor=#1f4b78;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="990" y="625" width="180" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="node_review" value="✓&lt;br&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Review&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#eaf7ef;strokeColor=#3c7a53;strokeWidth=2.2;fontSize=34;fontStyle=1;fontColor=#235335;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="710" y="760" width="180" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="node_followup" value="+&lt;br&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Follow-up&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fdeaea;strokeColor=#a44b4b;strokeWidth=2.2;fontSize=34;fontStyle=1;fontColor=#6f2c2c;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="430" y="625" width="180" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="node_graph" value="◎&lt;br&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Graph Update&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#e8f7f0;strokeColor=#34805d;strokeWidth=2.2;fontSize=30;fontStyle=1;fontColor=#215a40;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="430" y="310" width="180" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="card_permission" value="⚙&lt;br&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Codex config&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;low interruption&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#ffffff;strokeColor=#d4dce5;strokeWidth=1.5;fontSize=28;fontStyle=1;fontColor=#2d5275;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+      <mxGeometry x="90" y="215" width="220" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="card_graphify" value="◎&lt;br&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Graphify&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;project memory&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#ffffff;strokeColor=#d4dce5;strokeWidth=1.5;fontSize=28;fontStyle=1;fontColor=#2e6b4f;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+      <mxGeometry x="90" y="390" width="220" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="card_methods" value="◆&lt;br&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Agent Skills&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;+ Superpowers&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#ffffff;strokeColor=#d4dce5;strokeWidth=1.5;fontSize=28;fontStyle=1;fontColor=#65477d;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+      <mxGeometry x="1290" y="390" width="220" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="card_missions" value="▶&lt;br&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Missions + /goal&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;state machine&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#ffffff;strokeColor=#d4dce5;strokeWidth=1.5;fontSize=28;fontStyle=1;fontColor=#7a4c19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+      <mxGeometry x="1290" y="565" width="220" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="formula" value="REVIEW pass → Deliver   |   REVIEW gap → Follow-up → Next Issue" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#111827;strokeColor=#111827;strokeWidth=1;fontSize=17;fontStyle=1;fontColor=#ffffff;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+      <mxGeometry x="430" y="895" width="740" height="54" as="geometry"/>
+    </mxCell>
+    <mxCell id="arrow1" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#70569a;strokeWidth=4;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="node_spec" target="node_csv">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="arrow2" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#a36a2c;strokeWidth=4;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="node_csv" target="node_execute">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="arrow3" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#386b9f;strokeWidth=4;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="node_execute" target="node_review">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="arrow4" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#3c7a53;strokeWidth=4;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="node_review" target="node_followup">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="arrow5" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#a44b4b;strokeWidth=4;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="node_followup" target="node_graph">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="arrow6" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#34805d;strokeWidth=4;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="node_graph" target="node_spec">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="support1" value="reduces friction" style="endArrow=block;html=1;rounded=0;strokeColor=#8b98a5;strokeWidth=1.5;dashed=1;dashPattern=8 5;fontSize=12;fontColor=#697586;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="card_permission" target="center">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="support2" value="feeds memory" style="endArrow=block;html=1;rounded=0;strokeColor=#8b98a5;strokeWidth=1.5;dashed=1;dashPattern=8 5;fontSize=12;fontColor=#697586;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="card_graphify" target="node_graph">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="support3" value="routes methods" style="endArrow=block;html=1;rounded=0;strokeColor=#8b98a5;strokeWidth=1.5;dashed=1;dashPattern=8 5;fontSize=12;fontColor=#697586;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="card_methods" target="node_spec">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="support4" value="drives queue" style="endArrow=block;html=1;rounded=0;strokeColor=#8b98a5;strokeWidth=1.5;dashed=1;dashPattern=8 5;fontSize=12;fontColor=#697586;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="card_missions" target="node_csv">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

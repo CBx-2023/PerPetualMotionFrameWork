@@ -1,0 +1,179 @@
+<mxGraphModel dx="1800" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1100" math="0" shadow="0" adaptiveColors="auto">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#faf9f5;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1800" height="1100" as="geometry"/>
+    </mxCell>
+    <mxCell id="title" value="PerPetual Motion FrameWork：长程任务“永动机制”说明图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=32;fontStyle=1;fontColor=#17202a;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="300" y="32" width="1200" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="subtitle" value="Codex config / App settings × Graphify × Agent Skills / Superpowers × Missions + /goal：把一次性任务变成可恢复、可验证、可回流的执行飞轮" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#5c6773;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="250" y="82" width="1300" height="34" as="geometry"/>
+    </mxCell>
+    <mxCell id="left_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#ffffff;strokeColor=#c8d0d8;strokeWidth=1.4;" vertex="1" parent="1">
+      <mxGeometry x="45" y="150" width="360" height="790" as="geometry"/>
+    </mxCell>
+    <mxCell id="left_label" value="四层工具栈：为飞轮提供低损耗运行条件" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;fontStyle=1;fontColor=#243447;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="70" y="170" width="300" height="34" as="geometry"/>
+    </mxCell>
+    <mxCell id="layer_permission" value="权限层&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Codex config / App settings&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;降低反复审批造成的中断损耗&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#eaf2fb;strokeColor=#356b95;strokeWidth=1.4;fontSize=18;fontStyle=1;fontColor=#18364f;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="75" y="220" width="300" height="105" as="geometry"/>
+    </mxCell>
+    <mxCell id="layer_memory" value="记忆层&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Graphify&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;将代码/文档/脚本抽成知识图谱，减少盲读与遗忘&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#edf7ef;strokeColor=#3b7451;strokeWidth=1.4;fontSize=18;fontStyle=1;fontColor=#214a32;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="75" y="355" width="300" height="112" as="geometry"/>
+    </mxCell>
+    <mxCell id="layer_method" value="方法层&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Agent Skills / Superpowers&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;按任务类型触发设计、TDD、调试、审查、发布等工程流程&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f4eff9;strokeColor=#73568b;strokeWidth=1.4;fontSize=18;fontStyle=1;fontColor=#4d3562;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="75" y="500" width="300" height="122" as="geometry"/>
+    </mxCell>
+    <mxCell id="layer_execution" value="执行层&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Missions + /goal&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;把任务变成 CSV 队列，用四状态闭环持续推进&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2df;strokeColor=#916234;strokeWidth=1.4;fontSize=18;fontStyle=1;fontColor=#603b17;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="75" y="655" width="300" height="122" as="geometry"/>
+    </mxCell>
+    <mxCell id="layer_note" value="关键解释：四层不是并列清单，而是飞轮的不同“减摩/蓄能/导向/推进”部件。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#f8f8f3;strokeColor=#aaa68d;strokeWidth=1.1;fontSize=13;fontColor=#4d4a3e;fontFamily=Microsoft YaHei;align=left;spacing=10;" vertex="1" parent="1">
+      <mxGeometry x="75" y="815" width="300" height="72" as="geometry"/>
+    </mxCell>
+    <mxCell id="wheel_outer" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#263442;strokeWidth=2.4;" vertex="1" parent="1">
+      <mxGeometry x="505" y="165" width="680" height="680" as="geometry"/>
+    </mxCell>
+    <mxCell id="wheel_inner" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f7fafc;strokeColor=#8b98a5;strokeWidth=1.4;dashed=1;dashPattern=8 6;" vertex="1" parent="1">
+      <mxGeometry x="670" y="330" width="350" height="350" as="geometry"/>
+    </mxCell>
+    <mxCell id="center" value="永动机制&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;不是无限循环，而是&lt;br&gt;“证据 → 状态 → 缺口 → 新任务”的自补给闭环&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#17202a;strokeColor=#17202a;strokeWidth=1.5;fontSize=24;fontStyle=1;fontColor=#ffffff;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="745" y="405" width="200" height="200" as="geometry"/>
+    </mxCell>
+    <mxCell id="n1" value="1  想法 / 需求&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;开放目标进入系统&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#ffffff;strokeColor=#263442;strokeWidth=1.3;fontSize=15;fontStyle=1;fontColor=#1f2933;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="760" y="145" width="170" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="n2" value="2  Superpowers&lt;br&gt;brainstorming / spec&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;形成可验收规格&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#f4eff9;strokeColor=#73568b;strokeWidth=1.3;fontSize=14;fontStyle=1;fontColor=#4d3562;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="235" width="190" height="84" as="geometry"/>
+    </mxCell>
+    <mxCell id="n3" value="3  Missions&lt;br&gt;spec / 自然语言 → CSV&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;任务原子化与排序&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff2df;strokeColor=#916234;strokeWidth=1.3;fontSize=14;fontStyle=1;fontColor=#603b17;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="1070" y="460" width="190" height="84" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4" value="4  /goal 执行 CSV&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;逐条 issue 推进&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff2df;strokeColor=#916234;strokeWidth=1.3;fontSize=15;fontStyle=1;fontColor=#603b17;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="985" y="690" width="180" height="74" as="geometry"/>
+    </mxCell>
+    <mxCell id="n5" value="5  四状态闭环&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;dev / initial review / regression / git&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff7ed;strokeColor=#916234;strokeWidth=1.3;fontSize=15;fontStyle=1;fontColor=#603b17;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="665" y="775" width="225" height="76" as="geometry"/>
+    </mxCell>
+    <mxCell id="n6" value="6  REVIEW 行&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;对齐原始目标，而非只看队列清空&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fbecec;strokeColor=#8b3d3d;strokeWidth=1.3;fontSize=15;fontStyle=1;fontColor=#633030;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="445" y="655" width="210" height="82" as="geometry"/>
+    </mxCell>
+    <mxCell id="n7" value="7  follow-up issue&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;未满足项、风险、验证缺口回流&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fbecec;strokeColor=#8b3d3d;strokeWidth=1.3;fontSize=15;fontStyle=1;fontColor=#633030;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="430" y="405" width="205" height="78" as="geometry"/>
+    </mxCell>
+    <mxCell id="n8" value="8  Graphify 更新 / 查询&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;graph.json / GRAPH_REPORT.md 为下一轮补上下文&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#edf7ef;strokeColor=#3b7451;strokeWidth=1.3;fontSize=14;fontStyle=1;fontColor=#214a32;fontFamily=Microsoft YaHei;spacing=8;" vertex="1" parent="1">
+      <mxGeometry x="485" y="220" width="220" height="88" as="geometry"/>
+    </mxCell>
+    <mxCell id="right_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#ffffff;strokeColor=#c8d0d8;strokeWidth=1.4;" vertex="1" parent="1">
+      <mxGeometry x="1245" y="150" width="510" height="790" as="geometry"/>
+    </mxCell>
+    <mxCell id="right_label" value="为什么能“永动”：三个自补给回路" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#243447;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="1275" y="170" width="430" height="34" as="geometry"/>
+    </mxCell>
+    <mxCell id="loop_context" value="① 上下文飞轮：Graphify&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;每次大改后更新知识图谱；下一轮先查图再行动。&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Contextₜ₊₁ = Contextₜ + GraphDelta + Evidence&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#edf7ef;strokeColor=#3b7451;strokeWidth=1.4;fontSize=17;fontStyle=1;fontColor=#214a32;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="1280" y="230" width="430" height="120" as="geometry"/>
+    </mxCell>
+    <mxCell id="loop_method" value="② 方法飞轮：Agent Skills / Superpowers&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;任务类型触发对应工程流程，避免每轮重新发明做法。&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Actionₜ = policy(task_type, risk, evidence_gap)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f4eff9;strokeColor=#73568b;strokeWidth=1.4;fontSize=17;fontStyle=1;fontColor=#4d3562;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="1280" y="380" width="430" height="124" as="geometry"/>
+    </mxCell>
+    <mxCell id="loop_execution" value="③ 执行飞轮：Missions + /goal&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;CSV 记录任务、状态、验证策略和缺口；中断后继续同一状态机。&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Queueₜ₊₁ = unfinished(Qₜ) + follow_up(gaps)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff2df;strokeColor=#916234;strokeWidth=1.4;fontSize=17;fontStyle=1;fontColor=#603b17;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="1280" y="535" width="430" height="132" as="geometry"/>
+    </mxCell>
+    <mxCell id="stop_rule" value="终止条件&lt;br&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;不是“跑完若干步骤”，而是 REVIEW 行证明原始目标已满足；否则缺口继续进入 follow-up issue。&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fbecec;strokeColor=#8b3d3d;strokeWidth=1.4;fontSize=17;fontStyle=1;fontColor=#633030;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="1280" y="700" width="430" height="112" as="geometry"/>
+    </mxCell>
+    <mxCell id="not_perpetual" value="“永动”的真实含义：系统不会凭空产出能量；新能量来自用户目标、工具验证、代码 diff、审查结论和风险缺口。框架做的是把这些输入持续转化为下一轮可执行状态。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#17202a;strokeColor=#17202a;strokeWidth=1;fontSize=13;fontColor=#ffffff;fontFamily=Microsoft YaHei;align=left;spacing=12;" vertex="1" parent="1">
+      <mxGeometry x="1280" y="842" width="430" height="72" as="geometry"/>
+    </mxCell>
+    <mxCell id="bottom_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#ffffff;strokeColor=#c8d0d8;strokeWidth=1.4;" vertex="1" parent="1">
+      <mxGeometry x="120" y="970" width="1560" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="bottom_title" value="CSV 闭环如何锁住飞轮" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#243447;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+      <mxGeometry x="150" y="988" width="190" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="fields_accept" value="acceptance_criteria&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;定义可验收完成&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8f8f3;strokeColor=#aaa68d;strokeWidth=1;fontSize=13;fontStyle=1;fontColor=#3f3d33;fontFamily=Microsoft YaHei;spacing=7;" vertex="1" parent="1">
+      <mxGeometry x="350" y="990" width="175" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="fields_test" value="test_mcp / required_mcp&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;区分怎么验与用什么验&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8f8f3;strokeColor=#aaa68d;strokeWidth=1;fontSize=13;fontStyle=1;fontColor=#3f3d33;fontFamily=Microsoft YaHei;spacing=7;" vertex="1" parent="1">
+      <mxGeometry x="550" y="990" width="210" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="fields_refs" value="refs / notes&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;保存起点、证据、风险、validation_gap&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8f8f3;strokeColor=#aaa68d;strokeWidth=1;fontSize=13;fontStyle=1;fontColor=#3f3d33;fontFamily=Microsoft YaHei;spacing=7;" vertex="1" parent="1">
+      <mxGeometry x="785" y="990" width="220" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="fields_states" value="dev_state / review_initial_state / review_regression_state / git_state&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;四状态把实现、初审、回归、提交拆开记录&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8f8f3;strokeColor=#aaa68d;strokeWidth=1;fontSize=13;fontStyle=1;fontColor=#3f3d33;fontFamily=Microsoft YaHei;spacing=7;" vertex="1" parent="1">
+      <mxGeometry x="1030" y="990" width="360" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="fields_review" value="REVIEW-01&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;最终目标对齐闸门&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fbecec;strokeColor=#8b3d3d;strokeWidth=1;fontSize=13;fontStyle=1;fontColor=#633030;fontFamily=Microsoft YaHei;spacing=7;" vertex="1" parent="1">
+      <mxGeometry x="1415" y="990" width="165" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_l1" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#6b7785;strokeWidth=1.4;" edge="1" parent="1" source="layer_permission" target="layer_memory">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_l2" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#6b7785;strokeWidth=1.4;" edge="1" parent="1" source="layer_memory" target="layer_method">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_l3" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#6b7785;strokeWidth=1.4;" edge="1" parent="1" source="layer_method" target="layer_execution">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_support1" value="减摩" style="endArrow=block;html=1;rounded=0;strokeColor=#356b95;strokeWidth=1.2;fontSize=12;fontColor=#356b95;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="layer_permission" target="wheel_outer">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_support2" value="补上下文" style="endArrow=block;html=1;rounded=0;strokeColor=#3b7451;strokeWidth=1.2;fontSize=12;fontColor=#3b7451;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="layer_memory" target="n8">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_support3" value="选流程" style="endArrow=block;html=1;rounded=0;strokeColor=#73568b;strokeWidth=1.2;fontSize=12;fontColor=#73568b;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="layer_method" target="n2">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_support4" value="推进" style="endArrow=block;html=1;rounded=0;strokeColor=#916234;strokeWidth=1.2;fontSize=12;fontColor=#916234;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="layer_execution" target="n3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#263442;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n1" target="n2">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#263442;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n2" target="n3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e3" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#263442;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n3" target="n4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#263442;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n4" target="n5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e5" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#263442;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n5" target="n6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e6" value="未通过" style="endArrow=block;html=1;rounded=1;strokeColor=#8b3d3d;strokeWidth=2;fontSize=12;fontColor=#8b3d3d;fontFamily=Microsoft YaHei;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n6" target="n7">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e7" value="新证据" style="endArrow=block;html=1;rounded=1;strokeColor=#3b7451;strokeWidth=2;fontSize=12;fontColor=#3b7451;fontFamily=Microsoft YaHei;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n7" target="n8">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e8" value="下一轮上下文" style="endArrow=block;html=1;rounded=1;strokeColor=#3b7451;strokeWidth=2;fontSize=12;fontColor=#3b7451;fontFamily=Microsoft YaHei;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n8" target="n1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_pass" value="通过 → 交付总结" style="endArrow=block;html=1;rounded=0;strokeColor=#2f7d50;strokeWidth=1.6;fontSize=12;fontColor=#2f7d50;fontFamily=Microsoft YaHei;" edge="1" parent="1" source="n6" target="stop_rule">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_resume" value="中断恢复：$mission continue / resume" style="endArrow=block;html=1;rounded=1;strokeColor=#59636e;strokeWidth=1.6;dashed=1;dashPattern=8 5;fontSize=12;fontColor=#59636e;fontFamily=Microsoft YaHei;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="n4" target="n3">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1185" y="640"/>
+          <mxPoint x="1215" y="565"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e_fields1" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#aaa68d;strokeWidth=1.1;" edge="1" parent="1" source="fields_accept" target="fields_test">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_fields2" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#aaa68d;strokeWidth=1.1;" edge="1" parent="1" source="fields_test" target="fields_refs">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_fields3" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#aaa68d;strokeWidth=1.1;" edge="1" parent="1" source="fields_refs" target="fields_states">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_fields4" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#aaa68d;strokeWidth=1.1;" edge="1" parent="1" source="fields_states" target="fields_review">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>
